@@ -1,9 +1,9 @@
-### create [Twitter developer account](https://developer.twitter.com/en/apply-for-access)
+1) you'll need a [Twitter developer account](https://developer.twitter.com/en/apply-for-access)
 
-### [install t](https://github.com/sferik/t)
+2) to [install stuff](https://github.com/sferik/t)
 
-### run ```./thread```
+3) but then just run ```./spam```,
 
-#### 1) writethe first tweet of the thread
+4) write the first tweet of the thread
 
-#### 2) type `N_CHAR` every `N_SEC` or you lose. tweets are automatically sent when you reach N_CHAR.
+5) and you're ready to type `N_CHAR` every `N_SEC` until you lose. tweets are automatically sent when you reach `N_CHAR`
