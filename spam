@@ -3,15 +3,23 @@ c() { tput setaf $1; } # set a color from integer
 red=`c 1`; blue=`c 4`; green=`c 2`; # shortcuts for different colors
 normal=$(tput sgr0) #  unset a color
 
-N_CHAR=280 # number of characters per tweet 
+N_CHAR=50 # number of characters per tweet 
 N_SEC=$N_CHAR # number of seconds per tweet
 redlim=$(($N_SEC / 2)) # if you spend 
 dt=0 # will be time to write a tweet
 
 get_id() { echo $1 | tr -d '\n' | sed 's/.*status \([0-9]*\).*/\1/'; } # get tweet id from output of "t reply ID MSG" or "t update MSG"
 
-# first tweet of thread
-printf "first tweet:\n\$ "; read -e tweet1; tweet_id=$(get_id "$(t update "$tweet1")"); 
+# getting the first twitter id
+read -p "Do you want to use a custom twitter ID to start the thread (Y/n)? " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[n]$ ]]
+then
+  echo "ok, what's the tweet id?\n\$ "
+  read -e tweet_id
+else
+  printf "ok, so what do you want to write as first tweet?\n\$ "; read -e tweet1; tweet_id=$(get_id "$(t update "$tweet1")"); 
+fi
 
 # while you have not passed the time limit, keep on tweeting N_CHAR every N_SEC
-while [ $dt -lt $N_SEC ]; do start=$SECONDS; tweet=""; while [ ${#tweet} -le $N_CHAR ]; do read -rsn1 -t 0.1; c=$REPLY; dt=$(($SECONDS - $start)); if `[ $dt -lt $redlim ]`; then col=$blue; else col=$red; fi; printf -- "|$tweet| ${#tweet}/$N_CHAR ${col}$(($N_SEC-$dt))s left ${normal}\r"; if [ "$c" = $'\177' ] && [ -n "$tweet" ]; then tweet=${tweet::-1}; elif `[ "$c" != "" ]`; then tweet+=$c; fi; done; printf "\ntweet took $dt seconds!\n"; tweet_id=$(get_id "$(t reply $tweet_id "${tweet::-1}")"); done; echo "${red}YOU LOST"
+while [ $dt -lt $N_SEC ]; do start=$SECONDS; printf "\ntwitter_id=$tweet_id\n"; tweet=""; while [ ${#tweet} -le $N_CHAR ]; do read -rsn1 -t 0.1; c=$REPLY; dt=$(($SECONDS - $start)); if `[ $dt -lt $redlim ]`; then col=$blue; else col=$red; fi; printf -- "|$tweet| ${#tweet}/$N_CHAR ${col}$(($N_SEC-$dt))s left ${normal}\r"; if [ "$c" = $'\177' ] && [ -n "$tweet" ]; then tweet=${tweet::-1}; elif `[ "$c" != "" ]`; then tweet+=$c; fi; done; printf "\ntweet took $dt seconds!\n"; tweet_id=$(get_id "$(t reply $tweet_id "${tweet::-1}")"); done; echo "${red}YOU LOST"
