@@ -1,7 +1,9 @@
-1)  you'll need to [setup t]((https://github.com/sferik/t), which means creating a Twitter developer account etc.
+### create [Twitter developer account](https://developer.twitter.com/en/apply-for-access)
 
-2) when that's done, just launch ```./thread```
+### [install t](https://github.com/sferik/t)
 
-- it will prompt you for the first tweet of the thread
+### run ```./thread```
 
-- then you need to type `N_CHAR` every `N_SEC` or you lose. tweets are automatically sent when you reach N_CHAR.
+#### 1) writethe first tweet of the thread
+
+#### 2) type `N_CHAR` every `N_SEC` or you lose. tweets are automatically sent when you reach N_CHAR.
