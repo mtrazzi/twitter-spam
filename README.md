@@ -2,7 +2,7 @@
 
 2) to [install stuff](https://github.com/sferik/t)
 
-3) but then just run ```./thread```,
+3) but then just run ```./spam```,
 
 4) write the first tweet of the thread
 
