@@ -1,6 +1,6 @@
 1) you'll need a [Twitter developer account](https://developer.twitter.com/en/apply-for-access)
 
-2) and to [install stuff](https://github.com/sferik/t)
+2) to [install stuff](https://github.com/sferik/t)
 
 3) but then just run ```./thread```,
 
