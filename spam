@@ -3,7 +3,7 @@ c() { tput setaf $1; } # set a color from integer
 red=`c 1`; blue=`c 4`; green=`c 2`; # shortcuts for different colors
 normal=$(tput sgr0) #  unset a color
 
-N_CHAR=10 # number of characters per tweet 
+N_CHAR=280 # number of characters per tweet 
 N_SEC=$N_CHAR # number of seconds per tweet
 redlim=$(($N_SEC / 2)) # if you spend 
 dt=0 # will be time to write a tweet
